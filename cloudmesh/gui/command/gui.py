@@ -29,7 +29,6 @@ class GuiCommand(PluginCommand):
 
         arguments.show = arguments["--show"]
 
-        pprint (arguments)
         if arguments.activate:
             Gui.activate()
 

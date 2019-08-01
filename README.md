@@ -13,3 +13,19 @@ Documentation
 see cloudmesh.cmd5
 
 * https://github.com/cloudmesh/cloudmesh.cmd5
+
+
+This component allows you to edit the cloudmesh.yaml file via a simple form
+
+Examples:
+    
+    cms gui activate
+    cms gui profile
+    cms gui cloud chameleon
+    
+Screenshots
+
+![Activate](images/activate.png)    
+
+![Credentials](images/credentials.png)
+    
