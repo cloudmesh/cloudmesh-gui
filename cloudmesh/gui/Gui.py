@@ -30,11 +30,12 @@ class Gui(object):
         event, values = window.Read()
         window.Close()
 
-        for _key, _value in values.items():
-            config[_key] = _value
-            Console.ok(f"{_key}={_value}")
 
-        config.save()
+        if event == "submit":
+            for _key, _value in values.items():
+                config[_key] = _value
+                Console.ok(f"{_key}={_value}")
+            config.save()
 
     @staticmethod
     def activate():
@@ -71,11 +72,14 @@ class Gui(object):
 
         event, values = window.Read()
 
-        for cloud in values:
 
-            active = values[cloud] or False
-            config[f"cloudmesh.cloud.{cloud}.cm.active"] = str(active)
-            if active:
-                Console.ok(f"Cloud {cloud} is active")
 
-        config.save()
+        if event == "submit":
+            for cloud in values:
+
+                active = values[cloud] or False
+                config[f"cloudmesh.cloud.{cloud}.cm.active"] = str(active)
+                if active:
+                    Console.ok(f"Cloud {cloud} is active")
+
+            config.save()

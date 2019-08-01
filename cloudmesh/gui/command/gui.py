@@ -27,8 +27,6 @@ class GuiCommand(PluginCommand):
 
         """
 
-        pprint(arguments)
-
         if arguments.activate:
             Gui.activate()
 
