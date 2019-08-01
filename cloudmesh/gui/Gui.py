@@ -1,7 +1,7 @@
 import PySimpleGUI as gui
 from cloudmesh.common.console import Console
 from cloudmesh.configuration.Config import Config
-
+from cloudmesh.common.FlatDict import FlatDict
 
 class Gui(object):
 
@@ -9,7 +9,7 @@ class Gui(object):
     def edit(key, caps=True, show=False):
         config = Config()
 
-        entry = config[key]
+        entry = dict(FlatDict(config[key]))
 
         layout = [
             [gui.Text(f'Cloudmesh Configuration Editor: {key}')]
