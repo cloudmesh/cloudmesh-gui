@@ -3,10 +3,7 @@ from cloudmesh.common.console import Console
 from cloudmesh.configuration.Config import Config
 
 
-
 class Gui(object):
-
-
 
     @staticmethod
     def edit(key, caps=True, show=False):
@@ -18,20 +15,27 @@ class Gui(object):
             [gui.Text(f'Cloudmesh Configuration Editor: {key}')]
         ]
 
+        length = 1
+        for _key, _value in entry.items():
+            length = max(length, len(_key))
+
+        print(length)
         for _key, _value in entry.items():
             if caps:
                 label = _key.capitalize()
             else:
                 label = _key
 
-
             secrets = Config.secrets()
             if _key in secrets and not show:
-                field = [gui.Text(label, size=(15, 1)), gui.InputText(key=f"{key}.{_key}",
-                                                                      password_char="*",
-                                                                      default_text=_value)]
+                field = [gui.Text(label, size=(length, 1)),
+                         gui.InputText(key=f"{key}.{_key}",
+                                       password_char="*",
+                                       default_text=_value)]
             else:
-                field = [gui.Text(label, size=(15, 1)), gui.InputText(key=f"{key}.{_key}", default_text=_value)]
+                field = [gui.Text(label, size=(length, 1)),
+                         gui.InputText(key=f"{key}.{_key}",
+                                       default_text=_value)]
             layout.append(field)
 
         layout.append([gui.Submit(), gui.Cancel()])
@@ -39,7 +43,6 @@ class Gui(object):
         window = gui.Window('Cloudmesh Configuration Editor', layout)
         event, values = window.Read()
         window.Close()
-
 
         if event == "submit":
             for _key, _value in values.items():
@@ -81,8 +84,6 @@ class Gui(object):
         window = gui.Window('Cloudmesh Configuration', layout, font=("Helvetica", 12))
 
         event, values = window.Read()
-
-
 
         if event == "submit":
             for cloud in values:
