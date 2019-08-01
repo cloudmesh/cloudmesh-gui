@@ -1,9 +1,11 @@
 from __future__ import print_function
 
+from pprint import pprint
+
 from cloudmesh.gui.Gui import Gui
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
-from pprint import pprint
+
 
 class GuiCommand(PluginCommand):
 
@@ -31,7 +33,6 @@ class GuiCommand(PluginCommand):
             Gui.activate()
 
         if arguments.profile:
-
             Gui.edit("cloudmesh.profile")
 
         if arguments.cloud:
