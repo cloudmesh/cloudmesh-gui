@@ -22,6 +22,7 @@ Examples:
     cms gui activate
     cms gui profile
     cms gui cloud chameleon
+    cms gui edit cloud.chameleon.credentials
     
 Screenshots
 

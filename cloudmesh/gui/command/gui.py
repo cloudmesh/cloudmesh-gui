@@ -19,6 +19,8 @@ class GuiCommand(PluginCommand):
                 gui activate
                 gui profile
                 gui cloud CLOUD [--show]
+                gui edit KEY [--show]
+
 
           This command allows configuration of cloudmesh with a GUI
 
@@ -38,5 +40,11 @@ class GuiCommand(PluginCommand):
         if arguments.cloud:
             cloud = arguments.CLOUD
             Gui.edit(f"cloudmesh.cloud.{cloud}.credentials", caps=False, show=arguments.show)
+
+        if arguments.edit:
+            key = arguments.KEY
+            if not key.startswith("cloudmesh."):
+                key = "cloudmesh." + key
+            Gui.edit(key, caps=False, show=arguments.show)
 
         return ""
