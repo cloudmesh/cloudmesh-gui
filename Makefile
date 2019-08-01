@@ -122,8 +122,8 @@ patch: clean
 	twine check dist/*
 	twine upload --repository testpypi  dist/*
 	$(call banner, "install")
-	sleep 10
-	pip install --index-url https://test.pypi.org/simple/ cloudmesh-$(package) -U
+	# sleep 10
+	# pip install --index-url https://test.pypi.org/simple/ cloudmesh-$(package) -U
 
 minor: clean
 	$(call banner, "minor")
