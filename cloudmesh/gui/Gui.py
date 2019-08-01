@@ -19,7 +19,8 @@ class Gui(object):
         for _key, _value in entry.items():
             length = max(length, len(_key))
 
-        print(length)
+        length= length + 3
+
         for _key, _value in entry.items():
             if caps:
                 label = _key.capitalize()
