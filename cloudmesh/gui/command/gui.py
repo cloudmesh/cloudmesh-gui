@@ -3,7 +3,7 @@ from __future__ import print_function
 from cloudmesh.gui.Gui import Gui
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
-
+from pprint import pprint
 
 class GuiCommand(PluginCommand):
 
@@ -15,6 +15,8 @@ class GuiCommand(PluginCommand):
 
           Usage:
                 gui activate
+                gui profile
+                gui cloud CLOUD
 
           This command allows configuration of cloudmesh with a GUI
 
@@ -23,7 +25,17 @@ class GuiCommand(PluginCommand):
 
         """
 
+        pprint(arguments)
+
         if arguments.activate:
             Gui.activate()
+
+        if arguments.profile:
+
+            Gui.edit("cloudmesh.profile")
+
+        if arguments.cloud:
+            cloud = arguments.CLOUD
+            Gui.edit(f"cloudmesh.cloud.{cloud}.credentials", caps=False)
 
         return ""

@@ -6,6 +6,43 @@ from cloudmesh.common.console import Console
 class Gui(object):
 
     @staticmethod
+    def edit(key, caps=True):
+        config = Config()
+        
+        entry = config[key]
+        
+        # Very basic window.  Return values using auto numbered keys
+
+
+        layout = [
+            [gui.Text(f'Cloudmesh Configuration Editor: {key}')]
+            ]
+
+        for _key, _value in entry.items():
+            if caps:
+                label = _key.capitalize()
+            else:
+                label = _key
+
+            field = [gui.Text(label, size=(15, 1)), gui.InputText(key=f"{key}.{_key}", default_text=_value)]
+            layout.append(field)
+
+
+        layout.append([gui.Submit(), gui.Cancel()])
+
+
+        window = gui.Window('Cloudmesh Configuration Editor', layout)
+        event, values = window.Read()
+        window.Close()
+
+        for _key, _value in values.items():
+            config[_key] = _value
+            Console.ok(f"{_key}={_value}")
+
+        config.save()
+
+
+    @staticmethod
     def activate():
         config = Config()
         clouds = list(config["cloudmesh.cloud"].keys())
@@ -27,8 +64,9 @@ class Gui(object):
                 color="green"
         
             choice = [gui.Checkbox(cloud,
-                                  text_color=color,
-                                  default=active)]
+                                   key=cloud,
+                                   text_color=color,
+                                   default=active)]
             layout.append(choice)
         
         layout.append([gui.Text('_'  * 100, size=(65, 1))])
@@ -38,19 +76,12 @@ class Gui(object):
         window = gui.Window('Cloudmesh Configuration', layout, font=("Helvetica", 12))
         
         event, values = window.Read()
-        
-        
-        selected = []
-        for i in range(0,len(clouds)):
-            cloud = clouds[i]
-            if values[i]:
-                selected.append(cloud)
-                Console.ok(f"Activate Cloud {cloud}")
-        
-        for cloud in clouds:
-            active = False
-            if cloud in selected:
-                active = True
+
+        for cloud in values:
+
+            active = values[cloud] or False
             config[f"cloudmesh.cloud.{cloud}.cm.active"] = str(active)
-        
+            if active:
+                Console.ok(f"Cloud {cloud} is active")
+
         config.save()
