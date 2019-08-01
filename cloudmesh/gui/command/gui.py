@@ -18,15 +18,18 @@ class GuiCommand(PluginCommand):
           Usage:
                 gui activate
                 gui profile
-                gui cloud CLOUD
+                gui cloud CLOUD [--show]
 
           This command allows configuration of cloudmesh with a GUI
 
           Options:
               -f      specify the file
-
+              --show  shows also the password
         """
 
+        arguments.show = arguments["--show"]
+
+        pprint (arguments)
         if arguments.activate:
             Gui.activate()
 
@@ -35,6 +38,6 @@ class GuiCommand(PluginCommand):
 
         if arguments.cloud:
             cloud = arguments.CLOUD
-            Gui.edit(f"cloudmesh.cloud.{cloud}.credentials", caps=False)
+            Gui.edit(f"cloudmesh.cloud.{cloud}.credentials", caps=False, show=arguments.show)
 
         return ""

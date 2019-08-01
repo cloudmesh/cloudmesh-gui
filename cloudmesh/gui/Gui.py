@@ -3,10 +3,13 @@ from cloudmesh.common.console import Console
 from cloudmesh.configuration.Config import Config
 
 
+
 class Gui(object):
 
+
+
     @staticmethod
-    def edit(key, caps=True):
+    def edit(key, caps=True, show=False):
         config = Config()
 
         entry = config[key]
@@ -21,7 +24,14 @@ class Gui(object):
             else:
                 label = _key
 
-            field = [gui.Text(label, size=(15, 1)), gui.InputText(key=f"{key}.{_key}", default_text=_value)]
+
+            secrets = Config.secrets()
+            if _key in secrets and not show:
+                field = [gui.Text(label, size=(15, 1)), gui.InputText(key=f"{key}.{_key}",
+                                                                      password_char="*",
+                                                                      default_text=_value)]
+            else:
+                field = [gui.Text(label, size=(15, 1)), gui.InputText(key=f"{key}.{_key}", default_text=_value)]
             layout.append(field)
 
         layout.append([gui.Submit(), gui.Cancel()])
