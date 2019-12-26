@@ -3,6 +3,7 @@ from cloudmesh.common.console import Console
 from cloudmesh.configuration.Config import Config
 from cloudmesh.common.FlatDict import FlatDict
 
+
 class Gui(object):
 
     @staticmethod
@@ -19,7 +20,7 @@ class Gui(object):
         for _key, _value in entry.items():
             length = max(length, len(_key))
 
-        length= length + 3
+        length = length + 3
 
         for _key, _value in entry.items():
             if caps:
@@ -59,7 +60,8 @@ class Gui(object):
         gui.SetOptions(text_justification='right')
 
         layout = [
-            [gui.Text('Cloudmesh Cloud Activation', font=('Helvetica', 16))],
+            [gui.Text('Cloudmesh Cloud Activation',
+                      font=('Helvetica', 16))],
             [gui.Text('Compute Services')]]
 
         layout.append([gui.Text('_' * 100, size=(65, 1))])
@@ -82,7 +84,9 @@ class Gui(object):
 
         layout.append([gui.Submit(), gui.Cancel()])
 
-        window = gui.Window('Cloudmesh Configuration', layout, font=("Helvetica", 12))
+        window = gui.Window('Cloudmesh Configuration',
+                            layout,
+                            font=("Helvetica", 12))
 
         event, values = window.Read()
 
