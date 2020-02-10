@@ -3,6 +3,7 @@ from cloudmesh.common.console import Console
 from cloudmesh.configuration.Config import Config
 from cloudmesh.common.FlatDict import FlatDict
 
+gui.theme('SystemDefault1')
 
 class Gui(object):
 
@@ -29,6 +30,7 @@ class Gui(object):
                 label = _key
 
             secrets = Config.secrets()
+
             if _key in secrets and not show:
                 field = [gui.Text(label, size=(length, 1)),
                          gui.InputText(key=f"{key}.{_key}",
@@ -42,15 +44,21 @@ class Gui(object):
 
         layout.append([gui.Submit(), gui.Cancel()])
 
-        window = gui.Window('Cloudmesh Configuration Editor', layout)
+        window = gui.Window('Cloudmesh Configuration Editor',
+                            layout,
+                            background_color="white"
+                            )
         event, values = window.Read()
         window.Close()
 
-        if event == "submit":
+        if event == "Submit":
             for _key, _value in values.items():
                 config[_key] = _value
                 Console.ok(f"{_key}={_value}")
             config.save()
+        else:
+            print (event)
+
 
     @staticmethod
     def activate():
@@ -90,7 +98,7 @@ class Gui(object):
 
         event, values = window.Read()
 
-        if event == "submit":
+        if event == "Submit":
             for cloud in values:
 
                 active = values[cloud] or False
@@ -99,3 +107,5 @@ class Gui(object):
                     Console.ok(f"Cloud {cloud} is active")
 
             config.save()
+        else:
+            print (event)
