@@ -11,7 +11,7 @@ class Gui(object):
     def edit(key, caps=True, show=False):
         config = Config()
 
-        entry = dict(FlatDict(config[key]))
+        entry = dict(FlatDict(config[key], sep='.'))
 
         layout = [
             [gui.Text(f'Cloudmesh Configuration Editor: {key}')]
