@@ -54,7 +54,8 @@ class Gui(object):
         if event == "Submit":
             for _key, _value in values.items():
                 config[_key] = _value
-                Console.ok(f"{_key}={_value}")
+                if show:
+                    Console.ok(f"{_key}={_value}")
             config.save()
         else:
             print (event)
