@@ -63,3 +63,9 @@ cms gui cloud chameleon
 
 ![Credentials](images/credentials.png)
     
+In case you like to edit all parameters for a compute cloud you can use
+
+
+```bash
+cms gui edit cloud.chameleon
+```
