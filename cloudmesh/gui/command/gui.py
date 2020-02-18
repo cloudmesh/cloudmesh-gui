@@ -16,6 +16,7 @@ class GuiCommand(PluginCommand):
           Usage:
                 gui activate
                 gui profile
+                gui mongo
                 gui cloud CLOUD [--show]
                 gui edit KEY [--show]
 
@@ -34,6 +35,12 @@ class GuiCommand(PluginCommand):
 
         if arguments.profile:
             Gui.edit("cloudmesh.profile")
+
+
+        if arguments.mongo:
+            Gui.edit(f"cloudmesh.data.mongo",
+                     caps=False,
+                     show=arguments.show)
 
         if arguments.cloud:
             cloud = arguments.CLOUD
