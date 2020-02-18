@@ -60,6 +60,60 @@ class Gui(object):
         else:
             print (event)
 
+    @staticmethod
+    def edit_list(keys, caps=True, show=False):
+        config = Config()
+
+
+        layout = [
+            [gui.Text(f'Cloudmesh Configuration Editor')]
+        ]
+
+        length = 1
+        for _key in keys:
+            length = max(length, len(_key))
+
+        length = length + 3
+
+        for _key in keys:
+            _value = config[_key]
+            if caps:
+                label = _key.capitalize()
+            else:
+                label = _key
+
+            secrets = Config.secrets()
+
+            if _key.rsplit(".", 1)[1] in secrets and not show:
+                field = [gui.Text(label, size=(length, 1)),
+                         gui.InputText(key=f"{_key}",
+                                       password_char="*",
+                                       default_text=_value)]
+            else:
+                field = [gui.Text(label, size=(length, 1)),
+                         gui.InputText(key=f"{_key}",
+                                       default_text=_value)]
+            layout.append(field)
+
+        layout.append([gui.Submit(), gui.Cancel()])
+
+        window = gui.Window('Cloudmesh Configuration Editor',
+                            layout,
+                            background_color="white"
+                            )
+        event, values = window.Read()
+        window.Close()
+
+        if event == "Submit":
+            for _key, _value in values.items():
+                config[_key] = _value
+                if show:
+                    Console.ok(f"{_key}={_value}")
+            config.save()
+        else:
+            print (event)
+
+
 
     @staticmethod
     def activate():
