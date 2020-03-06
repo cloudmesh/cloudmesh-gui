@@ -9,17 +9,26 @@ try:
 
     gui.theme('SystemDefault1')
 
+    gui_enabled = True
+
 except Exception as e:
     # Console.Warning("Cloudmesh Gui not supported, can not find tkinter")
     #print (e)
     #sys.exit(0)
-    pass
+    gui_enabled = False
 
 
 class Gui(object):
 
     @staticmethod
     def edit(key, caps=True, show=False):
+
+        global gui_enabled
+
+        if not gui_enabled:
+            Console.Warning("Cloudmesh Gui not supported, can not find tkinter")
+            return ""
+
         config = Config()
 
         entry = dict(FlatDict(config[key], sep='.'))
@@ -73,6 +82,14 @@ class Gui(object):
 
     @staticmethod
     def edit_list(keys, caps=True, show=False):
+
+        global gui_enabled
+
+        if not gui_enabled:
+            Console.Warning("Cloudmesh Gui not supported, can not find tkinter")
+            return ""
+
+
         config = Config()
 
 
@@ -128,6 +145,13 @@ class Gui(object):
 
     @staticmethod
     def activate():
+
+        global gui_enabled
+
+        if not gui_enabled:
+            Console.Warning("Cloudmesh Gui not supported, can not find tkinter")
+            return ""
+
         config = Config()
         clouds = list(config["cloudmesh.cloud"].keys())
 
