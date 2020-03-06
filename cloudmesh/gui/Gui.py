@@ -1,17 +1,20 @@
 from cloudmesh.common.console import Console
 from cloudmesh.configuration.Config import Config
 from cloudmesh.common.FlatDict import FlatDict
+
 import sys
 
 try:
     import PySimpleGUI as gui
+
+    gui.theme('SystemDefault1')
+
 except Exception as e:
-    Console.error("Cloudmesh Gui not supported, can not find tkinter")
-    print (e)
-    sys.exit(1)
+    # Console.Warning("Cloudmesh Gui not supported, can not find tkinter")
+    #print (e)
+    #sys.exit(0)
+    pass
 
-
-gui.theme('SystemDefault1')
 
 class Gui(object):
 
