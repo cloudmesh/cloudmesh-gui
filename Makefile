@@ -81,9 +81,8 @@ clean:
 	rm -rf docs/build
 	rm -rf build
 	rm -rf dist
-	find . -type d -name __pycache__ -delete
-	find . -name '*.pyc' -delete
-	find . -name '*.pye' -delete
+	find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+	#find . -name '*.pye' -delete
 	rm -rf .tox
 	rm -f *.whl
 
