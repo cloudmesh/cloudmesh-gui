@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 from cloudmesh.gui.Gui import Gui
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
