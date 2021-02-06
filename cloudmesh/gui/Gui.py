@@ -13,8 +13,8 @@ try:
 
 except Exception as e:
     # Console.Warning("Cloudmesh Gui not supported, can not find tkinter")
-    #print (e)
-    #sys.exit(0)
+    # print (e)
+    # sys.exit(0)
     gui_enabled = False
 
 
@@ -78,7 +78,7 @@ class Gui(object):
                     Console.ok(f"{_key}={_value}")
             config.save()
         else:
-            print (event)
+            print(event)
 
     @staticmethod
     def edit_list(keys, caps=True, show=False):
@@ -89,9 +89,7 @@ class Gui(object):
             Console.Warning("Cloudmesh Gui not supported, can not find tkinter")
             return ""
 
-
         config = Config()
-
 
         layout = [
             [gui.Text(f'Cloudmesh Configuration Editor')]
@@ -139,9 +137,7 @@ class Gui(object):
                     Console.ok(f"{_key}={_value}")
             config.save()
         else:
-            print (event)
-
-
+            print(event)
 
     @staticmethod
     def activate():
@@ -198,4 +194,4 @@ class Gui(object):
 
             config.save()
         else:
-            print (event)
+            print(event)
