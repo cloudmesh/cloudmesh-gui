@@ -14,11 +14,9 @@ class GuiCommand(PluginCommand):
           Usage:
                 gui activate
                 gui profile
-                gui mongo [user]
                 gui cloud CLOUD [--show]
                 gui edit KEY [--show]
                 gui quick
-
 
           This command allows configuration of cloudmesh with a GUI
 
@@ -35,9 +33,6 @@ class GuiCommand(PluginCommand):
 
                   lets you fill out the profile
 
-                gui mongo [user]
-
-                  lets you fill out the mongo information
 
                 gui cloud CLOUD [--show]
 
@@ -48,12 +43,20 @@ class GuiCommand(PluginCommand):
                   lets you fill out any data identified by the Key in the yaml
                   file in dot notation
 
-                gui quicke
+                gui quick
 
                   lets you fill out a combination that is good enough to get
                   you started in class (this is experiemental)
 
         """
+        # removing mongo setup as we no longer support it.
+        # outcommenting for now
+
+        # gui mongo[user]
+
+                # gui mongo [user]
+                #
+                #   lets you fill out the mongo information
 
         arguments.show = arguments["--show"]
 
@@ -64,16 +67,16 @@ class GuiCommand(PluginCommand):
             Gui.edit("cloudmesh.profile")
 
 
-        elif arguments.mongo and arguments.user:
-            Gui.edit_list(["cloudmesh.data.mongo.MONGO_USERNAME",
-                           "cloudmesh.data.mongo.MONGO_PASSWORD"],
-                          caps=False,
-                          show=arguments.show)
-
-        elif arguments.mongo:
-            Gui.edit(f"cloudmesh.data.mongo",
-                     caps=False,
-                     show=arguments.show)
+        # elif arguments.mongo and arguments.user:
+        #     Gui.edit_list(["cloudmesh.data.mongo.MONGO_USERNAME",
+        #                    "cloudmesh.data.mongo.MONGO_PASSWORD"],
+        #                   caps=False,
+        #                   show=arguments.show)
+        #
+        # elif arguments.mongo:
+        #     Gui.edit(f"cloudmesh.data.mongo",
+        #              caps=False,
+        #              show=arguments.show)
 
         elif arguments.cloud:
             cloud = arguments.CLOUD
@@ -95,9 +98,9 @@ class GuiCommand(PluginCommand):
                 "cloudmesh.profile.email",
                 "cloudmesh.profile.user",
                 "cloudmesh.profile.github",
-                "cloudmesh.data.mongo.MONGO_USERNAME",
-                "cloudmesh.data.mongo.MONGO_PASSWORD",
-                "cloudmesh.data.mongo.MODE",
+                # "cloudmesh.data.mongo.MONGO_USERNAME",
+                # "cloudmesh.data.mongo.MONGO_PASSWORD",
+                # "cloudmesh.data.mongo.MODE",
                 "cloudmesh.cloud.chameleon.credentials.auth.username",
                 "cloudmesh.cloud.chameleon.credentials.auth.password",
             ],
