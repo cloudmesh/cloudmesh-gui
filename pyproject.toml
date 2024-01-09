@@ -50,6 +50,7 @@ classifiers = [
 
 dependencies = [
     "cloudmesh-cmd5",
+    "pysimplegui"
 ]
 
 [project.urls]
