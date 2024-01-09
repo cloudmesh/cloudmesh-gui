@@ -1,4 +1,4 @@
-from cloudmesh.gui.Gui import Gui
+from cloudmesh.gui.gui import Gui
 from cloudmesh.shell.command import PluginCommand
 from cloudmesh.shell.command import command
 
