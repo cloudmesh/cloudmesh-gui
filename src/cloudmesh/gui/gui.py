@@ -26,7 +26,7 @@ class Gui(object):
         global gui_enabled
 
         if not gui_enabled:
-            Console.warning("Cloudmesh Gui not supported, can not find tkinter")
+            Console.warning("Cloudmesh Gui not supported, can not find PySimpleGui")
             return ""
 
         config = Config()
@@ -86,7 +86,7 @@ class Gui(object):
         global gui_enabled
 
         if not gui_enabled:
-            Console.warning("Cloudmesh Gui not supported, can not find tkinter")
+            Console.warning("Cloudmesh Gui not supported, can not find PySimpleGui")
             return ""
 
         config = Config()
@@ -145,7 +145,7 @@ class Gui(object):
         global gui_enabled
 
         if not gui_enabled:
-            Console.warning("Cloudmesh Gui not supported, can not find tkinter")
+            Console.warning("Cloudmesh Gui not supported, can not find PySimpleGui")
             return ""
 
         config = Config()
